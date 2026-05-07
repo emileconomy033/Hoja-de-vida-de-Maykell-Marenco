@@ -399,7 +399,7 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint::after {
   content: "";
   position: absolute;
-  bottom: 100%; right: 20px;
+  bottom: 100%; right: 12px;
   border: 7px solid transparent;
   border-bottom-color: var(--blue-dark);
 }
@@ -548,8 +548,8 @@ body.lang-en [data-lang="es"] { display: none; }
       <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
     </div>
     <button class="tb-btn" onclick="window.print()">🖨 Imprimir / PDF</button>
-    <button class="tb-btn drawer-tb-btn" onclick="openDrawer()">Ver más ☰</button>
   </div>
+  <button class="tb-btn drawer-tb-btn" onclick="openDrawer()" style="margin-left:auto;">Ver más ☰</button>
 </div>
 
 <div class="page-wrap">
