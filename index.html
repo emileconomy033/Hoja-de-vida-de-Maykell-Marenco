@@ -381,7 +381,7 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint {
   display: none;
   position: fixed;
-  top: 140px;
+  top: 54px;
   right: 12px;
   z-index: 400;
   background: var(--blue-dark);
@@ -399,7 +399,7 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint::after {
   content: "";
   position: absolute;
-  bottom: 100%; right: 20px;
+  bottom: 100%; right: 16px;
   border: 7px solid transparent;
   border-bottom-color: var(--blue-dark);
 }
@@ -492,19 +492,30 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-content .tl-bar.past { background: var(--blue-dark); }
 .drawer-content .tl-role { font-size: 7.5pt; color: #555; margin-top: 1px; padding-left: 44px; font-style: italic; }
 
+/* Toolbar drawer button */
+.drawer-tb-btn {
+  display: none;
+  background: rgba(184,134,11,0.25) !important;
+  border: 1px solid var(--gold) !important;
+  color: var(--gold) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px;
+}
+.drawer-tb-btn:hover { background: var(--gold) !important; color: white !important; }
+
 /* Only show on mobile */
 @media screen and (max-width: 700px) {
   .drawer-btn { display: flex; }
   .drawer-btn-bottom { display: flex; }
-  .drawer-btn-header { display: block; }
+  .drawer-tb-btn { display: inline-flex !important; }
   .drawer-hint { display: block; }
-  /* shrink header text to make room for button */
-  .header-text { padding-right: 90px; }
+  .header-text { padding-right: 0; }
 }
 @media screen and (min-width: 701px) {
   .drawer-panel, .drawer-overlay, .drawer-btn,
   .drawer-btn-top, .drawer-btn-bottom,
-  .drawer-btn-header, .drawer-hint { display: none !important; }
+  .drawer-btn-header, .drawer-tb-btn,
+  .drawer-hint { display: none !important; }
 }
 </style>
 </head>
@@ -540,6 +551,7 @@ body.lang-en [data-lang="es"] { display: none; }
     </div>
     <button class="tb-btn" onclick="window.print()">🖨 Imprimir / PDF</button>
     <a class="tb-btn gold" href="https://www.researchgate.net/profile/Maykell-Marenco" target="_blank">ResearchGate ↗</a>
+    <button class="tb-btn drawer-tb-btn" onclick="openDrawer()">Ver más ☰</button>
   </div>
 </div>
 
@@ -558,10 +570,6 @@ body.lang-en [data-lang="es"] { display: none; }
       <strong data-lang="es">Magíster Scientiae en Gestión del Conocimiento e Investigación en Políticas Públicas</strong>
       <strong data-lang="en">Master of Science in Knowledge Management and Public Policy Research</strong>
     </div>
-  </div>
-  <!-- Drawer trigger: top-right of header, mobile only -->
-  <div class="drawer-btn-header">
-    <button class="drawer-btn" onclick="openDrawer()">Ver más <span class="drawer-btn-icon">☰</span></button>
   </div>
 </header>
 
@@ -907,10 +915,6 @@ body.lang-en [data-lang="es"] { display: none; }
       <a class="ref-action-btn email" href="mailto:mmejia@sieca.int">✉ mmejia@sieca.int</a>
     </div>
   </div>
-</div>
-
-<div class="drawer-btn-bottom">
-  <button class="drawer-btn" onclick="openDrawer()">Ver más <span class="drawer-btn-icon">☰</span></button>
 </div>
 
 </main>
