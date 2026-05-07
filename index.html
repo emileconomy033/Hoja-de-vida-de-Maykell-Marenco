@@ -381,8 +381,8 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint {
   display: none;
   position: fixed;
-  top: 54px;
-  right: 12px;
+  top: 52px;
+  right: 8px;
   z-index: 400;
   background: var(--blue-dark);
   color: white;
@@ -399,12 +399,12 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint::after {
   content: "";
   position: absolute;
-  bottom: 100%; right: 16px;
+  bottom: 100%; right: 20px;
   border: 7px solid transparent;
   border-bottom-color: var(--blue-dark);
 }
 @keyframes hintFadeOut {
-  0%   { opacity: 0; transform: translateY(6px); }
+  0%   { opacity: 0; transform: translateY(4px); }
   15%  { opacity: 1; transform: translateY(0); }
   70%  { opacity: 1; }
   100% { opacity: 0; transform: translateY(-4px); }
