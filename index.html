@@ -80,6 +80,7 @@ body {
   padding: 28px 32px 22px 32px;
   border-bottom: 1px solid var(--rule);
   display: flex; align-items: flex-start; gap: 24px;
+  position: relative;
 }
 .header-photo { width: 100px; height: 100px; border-radius: 2px; object-fit: cover; flex-shrink: 0; border: 2px solid var(--rule); }
 .header-text { flex: 1; }
@@ -261,8 +262,11 @@ a.pub-link:hover { color: var(--gold); }
   width: 480px; max-width: 90vw; max-height: 70vh; overflow-y: auto;
   background: white; border-radius: 8px;
   box-shadow: 0 8px 40px rgba(0,0,0,.35);
-  z-index: 500; padding: 0;
+  z-index: 600; padding: 0;
   border-top: 4px solid var(--gold);
+}
+.tl-overlay {
+  z-index: 550 !important;
 }
 .tl-popup.open { display: block; }
 .tl-popup-header {
@@ -364,14 +368,21 @@ body.lang-en [data-lang="es"] { display: none; }
   border-top: 1px solid var(--rule);
   margin-top: 10px;
 }
+/* Header button: top-right corner */
+.drawer-btn-header {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+}
 
 /* Hint tooltip — appears on load, fades out */
 .drawer-hint {
   display: none;
   position: fixed;
-  bottom: auto;
-  top: 56px;
-  right: 16px;
+  top: 140px;
+  right: 12px;
   z-index: 400;
   background: var(--blue-dark);
   color: white;
@@ -388,7 +399,7 @@ body.lang-en [data-lang="es"] { display: none; }
 .drawer-hint::after {
   content: "";
   position: absolute;
-  bottom: 100%; right: 28px;
+  bottom: 100%; right: 20px;
   border: 7px solid transparent;
   border-bottom-color: var(--blue-dark);
 }
@@ -484,12 +495,16 @@ body.lang-en [data-lang="es"] { display: none; }
 /* Only show on mobile */
 @media screen and (max-width: 700px) {
   .drawer-btn { display: flex; }
-  .drawer-btn-top, .drawer-btn-bottom { display: flex; }
+  .drawer-btn-bottom { display: flex; }
+  .drawer-btn-header { display: block; }
   .drawer-hint { display: block; }
+  /* shrink header text to make room for button */
+  .header-text { padding-right: 90px; }
 }
 @media screen and (min-width: 701px) {
   .drawer-panel, .drawer-overlay, .drawer-btn,
-  .drawer-btn-top, .drawer-btn-bottom, .drawer-hint { display: none !important; }
+  .drawer-btn-top, .drawer-btn-bottom,
+  .drawer-btn-header, .drawer-hint { display: none !important; }
 }
 </style>
 </head>
@@ -544,14 +559,14 @@ body.lang-en [data-lang="es"] { display: none; }
       <strong data-lang="en">Master of Science in Knowledge Management and Public Policy Research</strong>
     </div>
   </div>
+  <!-- Drawer trigger: top-right of header, mobile only -->
+  <div class="drawer-btn-header">
+    <button class="drawer-btn" onclick="openDrawer()">Ver más <span class="drawer-btn-icon">☰</span></button>
+  </div>
 </header>
 
 <!-- ══ MAIN ══ -->
 <main class="main">
-
-<div class="drawer-btn-top">
-  <button class="drawer-btn" onclick="openDrawer()">Ver más <span class="drawer-btn-icon">☰</span></button>
-</div>
 
 <p class="profile" data-lang="es">Economista especializado en análisis macroeconómico, comercio exterior e integración económica centroamericana, con más de ocho años de experiencia en dirección de investigación aplicada, elaboración de informes técnicos para toma de decisión y coordinación interinstitucional pública regional. Actualmente Jefe del Departamento de Investigación y Análisis de la <span class="ht">SIECA<span class="tt">Secretaría de Integración Económica Centroamericana — organismo técnico del subsistema económico del SICA</span></span>, produciendo estudios técnicos y análisis de coyuntura económica y comercial que sirven de insumo para los órganos regionales de integración económica. Con capacidad para traducir evidencia cuantitativa en notas ejecutivas, proyecciones y propuestas orientadas a competitividad, inversión extranjera directa y aprovechamiento de acuerdos comerciales. Dominio de herramientas econométricas y de <em>Business Intelligence</em>.</p>
 <p class="profile" data-lang="en">Economist specialized in macroeconomic analysis, foreign trade and Central American economic integration, with over eight years of experience leading applied research, producing technical briefs for decision-makers and coordinating across regional public institutions. Currently Head of the Research and Analysis Department at SIECA, generating technical studies and economic outlook analyses for regional integration bodies. Skilled at translating quantitative evidence into executive briefs, projections and proposals focused on competitiveness, foreign direct investment and leveraging trade agreements. Advanced command of econometric and Business Intelligence tools.</p>
@@ -1234,32 +1249,32 @@ document.addEventListener("keydown", function(e) { if (e.key === "Escape") close
       <div class="sb-head" data-lang="es">📅 Línea de Tiempo — toca para detalles</div>
       <div class="sb-head" data-lang="en">📅 Career Timeline — tap for details</div>
       <div class="tl-wrapper">
-        <div class="tl-item" onclick="closeDrawer();openTl('2023')">
+        <div class="tl-item" onclick="openTl('2023')">
           <div class="tl-header"><span class="tl-year-badge">2023</span><div class="tl-bar-wrap"><div class="tl-bar current" style="width:100%"></div></div></div>
           <div class="tl-role" data-lang="es">Jefe de Investigación y Análisis — SIECA</div>
           <div class="tl-role" data-lang="en">Head of Research &amp; Analysis — SIECA</div>
         </div>
-        <div class="tl-item" onclick="closeDrawer();openTl('2022')">
+        <div class="tl-item" onclick="openTl('2022')">
           <div class="tl-header"><span class="tl-year-badge">2022</span><div class="tl-bar-wrap"><div class="tl-bar past" style="width:75%"></div></div></div>
           <div class="tl-role" data-lang="es">Técnico Estadístico — SIECA (promovido en 3 meses)</div>
           <div class="tl-role" data-lang="en">Statistical Analyst — SIECA (promoted in 3 months)</div>
         </div>
-        <div class="tl-item" onclick="closeDrawer();openTl('2021')">
+        <div class="tl-item" onclick="openTl('2021')">
           <div class="tl-header"><span class="tl-year-badge">2021</span><div class="tl-bar-wrap"><div class="tl-bar past" style="width:60%"></div></div></div>
           <div class="tl-role" data-lang="es">Consultor Internacional — AESA / Docente Nicaragua</div>
           <div class="tl-role" data-lang="en">International Consultant — AESA / Lecturer Nicaragua</div>
         </div>
-        <div class="tl-item" onclick="closeDrawer();openTl('2020')">
+        <div class="tl-item" onclick="openTl('2020')">
           <div class="tl-header"><span class="tl-year-badge">2020</span><div class="tl-bar-wrap"><div class="tl-bar past" style="width:45%"></div></div></div>
           <div class="tl-role" data-lang="es">Asistente Económico — Embajada de México</div>
           <div class="tl-role" data-lang="en">Economic Assistant — Embassy of Mexico</div>
         </div>
-        <div class="tl-item" onclick="closeDrawer();openTl('2019')">
+        <div class="tl-item" onclick="openTl('2019')">
           <div class="tl-header"><span class="tl-year-badge">2019</span><div class="tl-bar-wrap"><div class="tl-bar past" style="width:30%"></div></div></div>
           <div class="tl-role" data-lang="es">Graduación Ingeniería / Conferencias</div>
           <div class="tl-role" data-lang="en">Engineering Graduation / Lectures</div>
         </div>
-        <div class="tl-item" onclick="closeDrawer();openTl('2017')">
+        <div class="tl-item" onclick="openTl('2017')">
           <div class="tl-header"><span class="tl-year-badge">2017</span><div class="tl-bar-wrap"><div class="tl-bar past" style="width:20%"></div></div></div>
           <div class="tl-role">Economista — BCN</div>
         </div>
