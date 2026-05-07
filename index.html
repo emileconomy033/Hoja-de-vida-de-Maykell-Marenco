@@ -494,20 +494,18 @@ body.lang-en [data-lang="es"] { display: none; }
 
 /* Toolbar drawer button */
 .drawer-tb-btn {
-  display: none;
-  background: rgba(184,134,11,0.25) !important;
+  background: var(--gold) !important;
   border: 1px solid var(--gold) !important;
-  color: var(--gold) !important;
+  color: white !important;
   font-weight: 700 !important;
   letter-spacing: 0.2px;
 }
-.drawer-tb-btn:hover { background: var(--gold) !important; color: white !important; }
+.drawer-tb-btn:hover { background: #a07709 !important; }
 
 /* Only show on mobile */
 @media screen and (max-width: 700px) {
   .drawer-btn { display: flex; }
   .drawer-btn-bottom { display: flex; }
-  .drawer-tb-btn { display: inline-flex !important; }
   .drawer-hint { display: block; }
   .header-text { padding-right: 0; }
 }
@@ -550,7 +548,6 @@ body.lang-en [data-lang="es"] { display: none; }
       <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
     </div>
     <button class="tb-btn" onclick="window.print()">🖨 Imprimir / PDF</button>
-    <a class="tb-btn gold" href="https://www.researchgate.net/profile/Maykell-Marenco" target="_blank">ResearchGate ↗</a>
     <button class="tb-btn drawer-tb-btn" onclick="openDrawer()">Ver más ☰</button>
   </div>
 </div>
